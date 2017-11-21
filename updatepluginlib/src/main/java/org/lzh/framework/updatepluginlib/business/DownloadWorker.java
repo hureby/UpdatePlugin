@@ -57,7 +57,7 @@ public abstract class DownloadWorker extends UnifiedWorker implements Runnable,R
     public void run() {
         try {
             String url = update.getUpdateUrl();
-            File cacheFileName = this.builder.getFileCreator().create(update.getVersionName());
+            File cacheFileName = this.builder.getFileCreator().create(update);
             cacheFileName.getParentFile().mkdirs();
             sendDownloadStart();
             download(url,cacheFileName);

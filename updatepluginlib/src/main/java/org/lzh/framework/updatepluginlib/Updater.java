@@ -79,7 +79,7 @@ public final class Updater {
         downloadCB.setUpdate(update);
 
         FileChecker fileChecker = builder.getFileChecker();
-        File cacheFile = builder.getFileCreator().create(update.getVersionName());
+        File cacheFile = builder.getFileCreator().create(update);
 
         try {
             if (cacheFile != null && cacheFile.exists()) {
