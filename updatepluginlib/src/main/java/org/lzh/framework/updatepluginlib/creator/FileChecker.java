@@ -22,7 +22,7 @@ import org.lzh.framework.updatepluginlib.model.Update;
 /**
  * 用于提供在更新中对apk进行有效性、安全性检查的接口
  *
- * <p>配置方式：通过{@link UpdateConfig#fileChecker(FileChecker)}或者{@link UpdateBuilder#fileChecker(FileChecker)}
+ * <p>配置方式：通过{@link UpdateConfig#setFileChecker(FileChecker)}或者{@link UpdateBuilder#fileChecker(FileChecker)}
  *
  * <p>默认实现：{@link DefaultFileChecker}
  *
@@ -45,7 +45,7 @@ public interface FileChecker {
      * </ol>
      *
      * @param update 更新数据实体类
-     * @param file 被{@link ApkFileCreator}所创建的缓存文件地址
+     * @param file 被{@link FileCreator}所创建的缓存文件地址
      * @throws Exception 若检查失败。抛出异常。外部将捕获后提供给用户具体的异常信心。便于定位问题。
      */
     void check(Update update, String file) throws Exception;

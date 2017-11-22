@@ -29,14 +29,14 @@ import org.lzh.framework.updatepluginlib.util.SafeDialogOper;
  * 默认使用的在检查到有更新时的通知创建器：创建一个弹窗提示用户当前有新版本需要更新。
  *
  * @author haoge
- * @see DialogCreator
+ * @see UpdateCreator
  */
-public class DefaultNeedUpdateCreator extends DialogCreator {
+public class DefaultNeedUpdateCreator extends UpdateCreator {
     @Override
     public Dialog create(final Update update, Activity activity) {
 
         if (activity == null || activity.isFinishing()) {
-            Log.e("DialogCreator--->","Activity was recycled or finished,dialog shown failed!");
+            Log.e("UpdateCreator--->","Activity was recycled or finished,dialog shown failed!");
             return null;
         }
 

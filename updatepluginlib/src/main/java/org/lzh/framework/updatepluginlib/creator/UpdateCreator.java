@@ -21,7 +21,7 @@ import android.app.Dialog;
 import org.lzh.framework.updatepluginlib.UpdateBuilder;
 import org.lzh.framework.updatepluginlib.UpdateConfig;
 import org.lzh.framework.updatepluginlib.Updater;
-import org.lzh.framework.updatepluginlib.callback.UpdateCheckCB;
+import org.lzh.framework.updatepluginlib.callback.CheckCallback;
 import org.lzh.framework.updatepluginlib.model.Update;
 import org.lzh.framework.updatepluginlib.strategy.UpdateStrategy;
 import org.lzh.framework.updatepluginlib.util.ActivityManager;
@@ -31,7 +31,7 @@ import org.lzh.framework.updatepluginlib.util.UpdatePreference;
 /**
  * <p>此类为当检查到更新时的通知创建器基类。
  *
- * <p>配置方式：通过{@link UpdateConfig#updateDialogCreator(DialogCreator)}或者{@link UpdateBuilder#updateDialogCreator(DialogCreator)}
+ * <p>配置方式：通过{@link UpdateConfig#setUpdateCreator(UpdateCreator)}或者{@link UpdateBuilder#updateDialogCreator(UpdateCreator)}
  *
  * <p>默认实现：{@link DefaultNeedUpdateCreator}
  *
@@ -44,15 +44,15 @@ import org.lzh.framework.updatepluginlib.util.UpdatePreference;
  *
  * @author haoge
  */
-public abstract class DialogCreator implements Recyclable {
+public abstract class UpdateCreator implements Recyclable {
 
     private UpdateBuilder builder;
-    private UpdateCheckCB checkCB;
+    private CheckCallback checkCB;
     public void setBuilder(UpdateBuilder builder) {
         this.builder = builder;
     }
 
-    public void setCheckCB(UpdateCheckCB checkCB) {
+    public void setCheckCB(CheckCallback checkCB) {
         this.checkCB = checkCB;
     }
 

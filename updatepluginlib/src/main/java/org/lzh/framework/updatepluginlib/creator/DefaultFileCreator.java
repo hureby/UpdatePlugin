@@ -27,7 +27,7 @@ import java.io.File;
  *
  * @author haoge
  */
-public class DefaultFileCreator implements ApkFileCreator {
+public class DefaultFileCreator implements FileCreator {
     @Override
     public File create(Update update) {
         File cacheDir = getCacheDir();

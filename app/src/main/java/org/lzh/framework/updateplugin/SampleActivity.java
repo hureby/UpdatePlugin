@@ -98,9 +98,9 @@ public class SampleActivity extends Activity {
     }
 
     private UpdateConfig createNewConfig() {
-        return UpdateConfig.createConfig()
-                .url("https://raw.githubusercontent.com/yjfnypeu/UpdatePlugin/master/update.json")
-                .jsonParser(new UpdateParser() {
+        return UpdateConfig.create()
+                .setUrl("https://raw.githubusercontent.com/yjfnypeu/UpdatePlugin/master/update.json")
+                .setUpdateParser(new UpdateParser() {
                     @Override
                     public Update parse(String httpResponse) throws Exception {
                         JSONObject object = new JSONObject(httpResponse);

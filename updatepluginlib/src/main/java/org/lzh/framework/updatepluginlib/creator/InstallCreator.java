@@ -29,7 +29,7 @@ import org.lzh.framework.updatepluginlib.util.UpdatePreference;
 /**
  * <p>此类为当检查到更新时的通知创建器基类。
  *
- * <p>配置方式：通过{@link UpdateConfig#installDialogCreator(InstallCreator)}或者{@link UpdateBuilder#installDialogCreator(InstallCreator)}
+ * <p>配置方式：通过{@link UpdateConfig#setInstallCreator(InstallCreator)}或者{@link UpdateBuilder#installDialogCreator(InstallCreator)}
  *
  * <p>默认实现：{@link DefaultNeedInstallCreator}
  *
@@ -62,22 +62,22 @@ public abstract class InstallCreator implements Recyclable {
             builder.getFileChecker().check(update, filename);
             builder.getInstallStrategy().install(ActivityManager.get().getApplicationContext(), filename, update);
         } catch (Exception e) {
-            builder.getCheckCB().onCheckError(new RuntimeException("check failed after download apk." + e.getMessage(), e));
+            builder.getCheckCallback().onCheckError(new RuntimeException("check failed after download apk." + e.getMessage(), e));
         }
         release();
     }
 
     public void sendUserCancel() {
-        if (builder.getCheckCB() != null) {
-            builder.getCheckCB().onUserCancel();
+        if (builder.getCheckCallback() != null) {
+            builder.getCheckCallback().onUserCancel();
         }
 
         release();
     }
 
     public void sendCheckIgnore(Update update) {
-        if (builder.getCheckCB() != null) {
-            builder.getCheckCB().onCheckIgnore(update);
+        if (builder.getCheckCallback() != null) {
+            builder.getCheckCallback().onCheckIgnore(update);
         }
         UpdatePreference.saveIgnoreVersion(update.getVersionCode());
         release();

@@ -18,18 +18,18 @@ package org.lzh.framework.updatepluginlib.callback;
 import org.lzh.framework.updatepluginlib.UpdateBuilder;
 import org.lzh.framework.updatepluginlib.UpdateConfig;
 import org.lzh.framework.updatepluginlib.business.UpdateWorker;
-import org.lzh.framework.updatepluginlib.creator.DialogCreator;
+import org.lzh.framework.updatepluginlib.creator.UpdateCreator;
 import org.lzh.framework.updatepluginlib.creator.InstallCreator;
 import org.lzh.framework.updatepluginlib.model.Update;
 
 /**
  * 检查更新的回调监听。
  *
- * <p>设置方式：通过{@link UpdateConfig#checkCB(UpdateCheckCB)}或者{@link UpdateBuilder#checkCB(UpdateCheckCB)}进行设置。
+ * <p>设置方式：通过{@link UpdateConfig#setCheckCallback(CheckCallback)}或者{@link UpdateBuilder#checkCB(CheckCallback)}进行设置。
  *
  * @author haoge
  */
-public interface UpdateCheckCB {
+public interface CheckCallback {
 
     /**
      * 当使用{@link UpdateBuilder#check()}进行启动更新任务时。通知到此回调中。
@@ -62,14 +62,14 @@ public interface UpdateCheckCB {
     void onCheckError(Throwable t);
 
     /**
-     * 当用户主动取消时触发到此回调中。主动取消的触发入口在{@link DialogCreator#sendUserCancel()}和{@link InstallCreator#sendUserCancel()}
+     * 当用户主动取消时触发到此回调中。主动取消的触发入口在{@link UpdateCreator#sendUserCancel()}和{@link InstallCreator#sendUserCancel()}
      *
      * <p>回调线程：UI
      */
     void onUserCancel();
 
     /**
-     * 当用户点击忽略此版本更新时触发到此回调中。触发入口在{@link DialogCreator#sendUserIgnore(Update)}和{@link InstallCreator#sendCheckIgnore(Update)}
+     * 当用户点击忽略此版本更新时触发到此回调中。触发入口在{@link UpdateCreator#sendUserIgnore(Update)}和{@link InstallCreator#sendCheckIgnore(Update)}
      *
      * <p>回调线程：UI
      * @param update Update entity

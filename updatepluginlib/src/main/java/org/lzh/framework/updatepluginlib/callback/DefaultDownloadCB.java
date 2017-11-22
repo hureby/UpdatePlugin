@@ -22,7 +22,6 @@ import org.lzh.framework.updatepluginlib.UpdateBuilder;
 import org.lzh.framework.updatepluginlib.business.DownloadWorker;
 import org.lzh.framework.updatepluginlib.creator.InstallCreator;
 import org.lzh.framework.updatepluginlib.model.Update;
-import org.lzh.framework.updatepluginlib.strategy.UpdateStrategy;
 import org.lzh.framework.updatepluginlib.util.ActivityManager;
 import org.lzh.framework.updatepluginlib.util.Recyclable;
 import org.lzh.framework.updatepluginlib.util.SafeDialogOper;
@@ -34,18 +33,18 @@ import java.io.File;
  *
  * @author haoge
  */
-public final class DefaultDownloadCB implements UpdateDownloadCB ,Recyclable {
+public final class DefaultDownloadCB implements DownloadCallback,Recyclable {
 
     private UpdateBuilder builder;
     // 通过UpdateConfig或者UpdateBuilder所设置的下载回调监听。通过此监听器进行通知用户下载状态
-    private UpdateDownloadCB downloadCB;
+    private DownloadCallback downloadCB;
     private Update update;
     // 通过DownloadCreator所创建的回调监听，通过此监听器进行下载通知的UI更新
-    private UpdateDownloadCB innerCB;
+    private DownloadCallback innerCB;
 
     public void setBuilder(UpdateBuilder builder) {
         this.builder = builder;
-        downloadCB = builder.getDownloadCB();
+        downloadCB = builder.getDownloadCallback();
     }
 
     public void setUpdate(Update update) {
@@ -67,8 +66,8 @@ public final class DefaultDownloadCB implements UpdateDownloadCB ,Recyclable {
         }
     }
 
-    private UpdateDownloadCB getInnerCB() {
-        if (innerCB != null || !builder.getStrategy().isShowDownloadDialog()) {
+    private DownloadCallback getInnerCB() {
+        if (innerCB != null || !builder.getUpdateStrategy().isShowDownloadDialog()) {
             return innerCB;
         }
 
@@ -102,7 +101,7 @@ public final class DefaultDownloadCB implements UpdateDownloadCB ,Recyclable {
         InstallCreator creator = builder.getInstallDialogCreator();
         creator.setBuilder(builder);
         creator.setUpdate(update);
-        if (builder.getStrategy().isAutoInstall()) {
+        if (builder.getUpdateStrategy().isAutoInstall()) {
             creator.sendToInstall(file.getAbsolutePath());
         } else {
             Dialog dialog = creator.create(update, file.getAbsolutePath(),current);

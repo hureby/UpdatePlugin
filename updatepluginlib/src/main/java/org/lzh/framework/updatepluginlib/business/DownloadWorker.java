@@ -17,7 +17,7 @@ package org.lzh.framework.updatepluginlib.business;
 
 import org.lzh.framework.updatepluginlib.UpdateBuilder;
 import org.lzh.framework.updatepluginlib.callback.DefaultDownloadCB;
-import org.lzh.framework.updatepluginlib.callback.UpdateDownloadCB;
+import org.lzh.framework.updatepluginlib.callback.DownloadCallback;
 import org.lzh.framework.updatepluginlib.model.Update;
 import org.lzh.framework.updatepluginlib.util.Recyclable;
 import org.lzh.framework.updatepluginlib.util.Utils;
@@ -36,7 +36,7 @@ public abstract class DownloadWorker extends UnifiedWorker implements Runnable,R
     /**
      * {@link DefaultDownloadCB}的实例。用于接收下载状态并进行后续流程通知
      */
-    private UpdateDownloadCB downloadCB;
+    private DownloadCallback downloadCB;
 
     protected Update update;
     protected UpdateBuilder builder;
@@ -49,7 +49,7 @@ public abstract class DownloadWorker extends UnifiedWorker implements Runnable,R
         this.builder = builder;
     }
 
-    public void setDownloadCB(UpdateDownloadCB downloadCB) {
+    public void setDownloadCB(DownloadCallback downloadCB) {
         this.downloadCB = downloadCB;
     }
 

@@ -19,7 +19,7 @@ import android.app.Activity;
 
 import org.lzh.framework.updatepluginlib.UpdateBuilder;
 import org.lzh.framework.updatepluginlib.UpdateConfig;
-import org.lzh.framework.updatepluginlib.callback.UpdateDownloadCB;
+import org.lzh.framework.updatepluginlib.callback.DownloadCallback;
 import org.lzh.framework.updatepluginlib.model.Update;
 import org.lzh.framework.updatepluginlib.strategy.UpdateStrategy;
 import org.lzh.framework.updatepluginlib.util.ActivityManager;
@@ -27,7 +27,7 @@ import org.lzh.framework.updatepluginlib.util.ActivityManager;
 /**
  * apk下载任务的通知创建器
  *
- * <p>配置方式：通过{@link UpdateConfig#downloadDialogCreator(DownloadCreator)}或者{@link UpdateBuilder#downloadDialogCreator(DownloadCreator)}
+ * <p>配置方式：通过{@link UpdateConfig#setDownloadCreator(DownloadCreator)}或者{@link UpdateBuilder#downloadDialogCreator(DownloadCreator)}
  *
  * <p>默认实现：{@link DefaultNeedDownloadCreator}
  *
@@ -44,5 +44,5 @@ public interface DownloadCreator {
      * @param activity 顶部的Activity实例。通过{@link ActivityManager#topActivity()}进行获取
      * @return 被创建的回调器。允许为null。
      */
-    UpdateDownloadCB create(Update update, Activity activity);
+    DownloadCallback create(Update update, Activity activity);
 }

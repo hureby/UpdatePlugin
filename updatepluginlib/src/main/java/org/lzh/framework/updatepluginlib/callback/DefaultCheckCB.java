@@ -21,7 +21,7 @@ import android.app.Dialog;
 import org.lzh.framework.updatepluginlib.UpdateBuilder;
 import org.lzh.framework.updatepluginlib.Updater;
 import org.lzh.framework.updatepluginlib.business.UpdateWorker;
-import org.lzh.framework.updatepluginlib.creator.DialogCreator;
+import org.lzh.framework.updatepluginlib.creator.UpdateCreator;
 import org.lzh.framework.updatepluginlib.model.Update;
 import org.lzh.framework.updatepluginlib.util.ActivityManager;
 import org.lzh.framework.updatepluginlib.util.Recyclable;
@@ -34,13 +34,13 @@ import org.lzh.framework.updatepluginlib.util.SafeDialogOper;
  *
  * @author haoge
  */
-public final class DefaultCheckCB implements UpdateCheckCB,Recyclable {
+public final class DefaultCheckCB implements CheckCallback,Recyclable {
     private UpdateBuilder builder;
-    private UpdateCheckCB checkCB;
+    private CheckCallback checkCB;
 
     public void setBuilder (UpdateBuilder builder) {
         this.builder = builder;
-        this.checkCB = builder.getCheckCB();
+        this.checkCB = builder.getCheckCallback();
     }
 
     @Override
@@ -61,16 +61,16 @@ public final class DefaultCheckCB implements UpdateCheckCB,Recyclable {
                 checkCB.hasUpdate(update);
             }
 
-            if (!builder.getStrategy().isShowUpdateDialog(update)) {
+            if (!builder.getUpdateStrategy().isShowUpdateDialog(update)) {
                 Updater.getInstance().downUpdate(update,builder);
                 return;
             }
 
             Activity current = ActivityManager.get().topActivity();
 
-            DialogCreator creator = builder.getUpdateDialogCreator();
+            UpdateCreator creator = builder.getUpdateDialogCreator();
             creator.setBuilder(builder);
-            creator.setCheckCB(builder.getCheckCB());
+            creator.setCheckCB(builder.getCheckCallback());
             Dialog dialog = creator.create(update,current);
             SafeDialogOper.safeShowDialog(dialog);
 

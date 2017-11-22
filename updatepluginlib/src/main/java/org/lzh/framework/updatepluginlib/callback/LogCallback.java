@@ -11,7 +11,7 @@ import java.io.File;
  *
  * @author haoge on 2017/9/26.
  */
-public final class LogCallback implements UpdateCheckCB, UpdateDownloadCB{
+public final class LogCallback implements CheckCallback, DownloadCallback {
 
     private static LogCallback callback = new LogCallback();
     private LogCallback() {}

@@ -24,7 +24,7 @@ import java.io.File;
 /**
  * 此接口用于定制下载文件的本地路径。
  *
- * <p>设置方式：通过{@link UpdateConfig#fileCreator(ApkFileCreator)}或者{@link UpdateBuilder#fileCreator(ApkFileCreator)}进行配置
+ * <p>设置方式：通过{@link UpdateConfig#setFileCreator(FileCreator)}或者{@link UpdateBuilder#fileCreator(FileCreator)}进行配置
  *
  * <p>默认实现方式：{@link DefaultFileChecker}
  *
@@ -32,7 +32,7 @@ import java.io.File;
  *
  * @author haoge
  */
-public interface ApkFileCreator {
+public interface FileCreator {
 
     File create(Update update);
 }

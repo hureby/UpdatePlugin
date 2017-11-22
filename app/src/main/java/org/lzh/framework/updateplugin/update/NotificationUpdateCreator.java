@@ -12,7 +12,7 @@ import android.content.IntentFilter;
 import android.support.v7.app.NotificationCompat;
 
 import org.lzh.framework.updateplugin.R;
-import org.lzh.framework.updatepluginlib.creator.DialogCreator;
+import org.lzh.framework.updatepluginlib.creator.UpdateCreator;
 import org.lzh.framework.updatepluginlib.model.Update;
 
 import java.util.UUID;
@@ -20,7 +20,7 @@ import java.util.UUID;
 /**
  * 简单实现：使用通知对用户提示：检查到有更新
  */
-public class NotificationUpdateCreator extends DialogCreator {
+public class NotificationUpdateCreator extends UpdateCreator {
     private final static String ACTION_UPDATE = "action.update.shot";
     private final static String ACTION_CANCEL = "action.update.cancel";
     private RequestUpdateReceiver requestUpdateReceiver;
